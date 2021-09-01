@@ -1,9 +1,6 @@
 class CannonBall {
   constructor(x, y) {
     var options = {
-      restitution: 0.8,
-      friction: 1.0,
-      density: 1.0,
       isStatic: true
     };
     this.r = 30;
@@ -23,11 +20,13 @@ class CannonBall {
   }
 
   shoot() {
-    var newAngle = cannon.angle - 0.5;
+     var newAngle = cannon.angle - 28;
+    newAngle = newAngle *(3.14/180)
     var velocity = p5.Vector.fromAngle(newAngle);
-    velocity.mult(20);
+    velocity.mult(0.5);
     Matter.Body.setStatic(this.body, false);
-    Matter.Body.setVelocity(this.body, { x: velocity.x, y: velocity.y });
+    Matter.Body.setVelocity(this.body, {
+      x: velocity.x *(180/3.14), y: velocity.y * (180/3.14)});
   }
 
   display() {
